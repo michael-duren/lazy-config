@@ -30,13 +30,6 @@ local keybindings = {
     command = ":BufferLineCyclePrev<CR>",
     description = "Previous buffer",
   },
-  -- Toggle transparency
-  {
-    mode = "n",
-    key = "<leader>T",
-    command = ":TransparentToggle<CR>",
-    description = "Toggle transparency",
-  },
   -- Hide search highlight
   {
     mode = "n",
@@ -44,40 +37,15 @@ local keybindings = {
     command = ":noh<CR>",
     description = "Hide search highlight",
   },
-  -- Window navigation
-  {
-    mode = "n",
-    key = "<C-l>",
-    command = "<C-w>l",
-    description = "Move to the right window",
-  },
-  {
-    mode = "n",
-    key = "<C-h>",
-    command = "<C-w>h",
-    description = "Move to the left window",
-  },
-  {
-    mode = "n",
-    key = "<C-j>",
-    command = "<C-w>j",
-    description = "Move to the bottom window",
-  },
-  {
-    mode = "n",
-    key = "<C-k>",
-    command = "<C-w>k",
-    description = "Move to the top window",
-  },
   -- Close buffer
-  {
-    mode = "n",
-    key = "<leader>c",
-    command = ":bd<CR>",
-    description = "Close current buffer",
-  },
-  { mode = "n", key = "<leader>q", command = ":q<CR>", description = "Quit" },
-  -- Splits
+  -- {
+  --   mode = "n",
+  --   key = "<leader>c",
+  --   command = ":bd<CR>",
+  --   description = "Close current buffer",
+  -- },
+  -- { mode = "n", key = "<leader>q", command = ":q<CR>", description = "Quit" },
+  -- -- Splits
   {
     mode = "n",
     key = "|",
