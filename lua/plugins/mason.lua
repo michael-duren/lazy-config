@@ -24,6 +24,7 @@ return {
       "iferr",
       "gotestsum",
       "gopls",
+      "omnisharp",
     },
   },
   ---@param opts MasonSettings | {ensure_installed: string[]}
