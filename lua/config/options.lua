@@ -8,3 +8,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 vim.g.copilot_assume_mapped = true
+vim.filetype.add({
+  extension = {
+    mdx = "mdx",
+  },
+})
