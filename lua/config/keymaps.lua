@@ -205,14 +205,6 @@ local keybindings = {
     command = "<cmd>Telescope quickfix<cr>",
     description = "Telescope Quickfix",
   },
-
-  -- BufferLine
-  {
-    mode = "n",
-    key = "<leader>Ko",
-    command = "<cmd>BufferLineCloseOthers<CR>",
-    description = "Close other buffers",
-  },
   -- luasnip
   {
     mode = "i",
