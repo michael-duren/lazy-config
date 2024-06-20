@@ -5,10 +5,19 @@ local themes = {
     priority = 1000,
     config = function()
       require("kanagawa").setup({
-        transparent = true,
-        -- dimInactive = true,
+        transparent = false,
+        dimInactive = true,
+        colors = {
+          palette = {
+            sumiInk0 = "#000000",
+            sumiInk1 = "#141414",
+            sumiInk2 = "#141414",
+            sumiInk3 = "#000000",
+            sumiInk4 = "#000000",
+          },
+        },
       })
-      vim.cmd("colorscheme kanagawa-dragon")
+      vim.cmd("colorscheme kanagawa-wave")
     end,
   },
   {
@@ -32,7 +41,7 @@ local themes = {
   },
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
     name = "catppuccin",
     opts = {
       transparent_background = true,
@@ -73,11 +82,78 @@ local themes = {
       },
     },
   },
+  {
+    "shaunsingh/nord.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    "baliestri/aura-theme",
+    lazy = false,
+    priority = 1000,
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+      vim.cmd([[colorscheme aura-dark]])
+    end,
+  },
+  {
+    "oxfist/night-owl.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      require("night-owl").setup()
+      vim.cmd.colorscheme("night-owl")
+    end,
+  },
+  {
+    "uloco/bluloco.nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = { "rktjmp/lush.nvim" },
+    config = function()
+      require("bluloco").setup({
+        style = "dark",
+        italics = true,
+        terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
+        guicursor = true,
+      })
+      vim.cmd("colorscheme bluloco")
+    end,
+  },
+  {
+    "sho-87/kanagawa-paper.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      undercurl = true,
+      dimInactive = false,
+      terminalColors = true,
+      commentStyle = { italic = true },
+      functionStyle = { italic = false },
+      keywordStyle = { italic = false, bold = true },
+      statementStyle = { italic = false, bold = false },
+      typeStyle = { italic = false },
+    },
+    config = function(opts)
+      require("kanagawa-paper").setup(opts)
+      vim.cmd("colorscheme kanagawa-paper")
+    end,
+  },
 }
 
-local chosenTheme = themes[5]
+-- color themes:
+-- 1. kanagawa
+-- 2. decay
+-- 3. gruvbox
+-- 4. tokyonight
+-- 5. catppuccin
+-- 6. nord
+-- 7. aura-dark
+-- 8. night-owl
+-- 9. bluloco
+-- 10. kanagawa-paper
 
-return { chosenTheme, {
-  "LazyVim/LazyVim",
-  opts = { colorscheme = "catppuccin" },
-} }
+local chosenTheme = themes[8]
+
+return { chosenTheme }
