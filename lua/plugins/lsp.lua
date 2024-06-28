@@ -8,12 +8,14 @@ return {
         -- Emmet
         emmet_ls = {
           init_options = {
-            html = {
+            jsx = {
+              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
               options = {
-                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-                ["bem.enabled"] = true,
                 ["jsx.enabled"] = true,
-                ["jsx.className"] = "class",
+                ["mark.attributes"] = {
+                  ["class"] = "class",
+                  ["className"] = "class",
+                },
               },
             },
           },
