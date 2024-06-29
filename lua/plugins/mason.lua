@@ -16,7 +16,6 @@ return {
       "shfmt",
       "stylua",
       "tailwindcss-language-server",
-      "typescript-language-server",
       "delve",
       "gotests",
       "golangci-lint",
