@@ -15,3 +15,11 @@ vim.filetype.add({
     mdx = "mdx",
   },
 })
+
+vim.filetype.add({
+  extension = {
+    templ = "templ",
+  },
+})
+
+vim.api.nvim_set_keymap("i", "<Tab>", "<Tab>", { noremap = true, silent = true })

@@ -56,6 +56,7 @@ else
         "regex",
         "toml",
         "tsx",
+        "templ",
         "typescript",
         "vim",
         "vimdoc",

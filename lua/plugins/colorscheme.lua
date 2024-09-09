@@ -31,13 +31,21 @@ local themes = {
           contrast = false,
         },
       })
+      vim.cmd([[colorscheme decay-dark]])
     end,
   },
-  { "ellisonleao/gruvbox.nvim" },
+  {
+    "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme gruvbox]])
+    end,
+  },
   {
     "folke/tokyonight.nvim",
     lazy = true,
-    opts = { style = "moon" },
+    opts = { style = "night", transparent = true },
   },
   {
     "catppuccin/nvim",
@@ -140,6 +148,58 @@ local themes = {
       vim.cmd("colorscheme kanagawa-paper")
     end,
   },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(opts)
+      -- vim.cmd.colorscheme("lackluster")
+      -- vim.cmd.colorscheme("lackluster-night") -- my favorite
+      -- vim.cmd.colorscheme("lackluster-mint")
+      local lackluster = require("lackluster")
+
+      local color = lackluster.color
+      lackluster.setup({
+        tweak_syntax = {
+          comment = lackluster.color.gray4, -- or gray5
+          string = color.green,
+          string_escape = color.red,
+        },
+        tweak_background = {
+          normal = "none",
+          telescope = "none",
+          menu = lackluster.color.gray3,
+          popup = "default",
+        },
+      })
+    end,
+  },
+  {
+    "tiagovla/tokyodark.nvim",
+    opts = {
+      transparent_background = true,
+    },
+    config = function(_, opts)
+      require("tokyodark").setup(opts) -- calling setup is optional
+      vim.cmd([[colorscheme tokyodark]])
+    end,
+  },
+  {
+    "olivercederborg/poimandres.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("poimandres").setup({
+        disable_background = true,
+      })
+    end,
+
+    -- optionally set the colorscheme within lazy config
+    init = function()
+      vim.cmd("colorscheme poimandres")
+    end,
+  },
 }
 
 -- color themes:
@@ -153,7 +213,16 @@ local themes = {
 -- 8. night-owl
 -- 9. bluloco
 -- 10. kanagawa-paper
+-- 11. lackluster (somewhat broken)
+-- 12. tokyodark
+-- 13. poimandres
 
-local chosenTheme = themes[8]
+local colorTheme = "tokyonight"
+local chosenTheme = themes[4]
 
-return { chosenTheme }
+return { chosenTheme, {
+  "LazyVim/LazyVim",
+  opts = {
+    colorscheme = colorTheme,
+  },
+} }
