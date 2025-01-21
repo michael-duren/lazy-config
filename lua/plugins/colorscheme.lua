@@ -200,6 +200,27 @@ local themes = {
       vim.cmd("colorscheme poimandres")
     end,
   },
+  {
+    "rose-pine/neovim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("rose-pine").setup({
+        variant = "moon", -- auto, main, moon, or dawn
+        dark_variant = "moon", -- main, moon, or dawn
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+        styles = {
+          transparent = true,
+        },
+      })
+    end,
+
+    -- optionally set the colorscheme within lazy config
+    init = function()
+      vim.cmd("colorscheme rose-pine")
+    end,
+  },
 }
 
 -- color themes:
@@ -216,9 +237,10 @@ local themes = {
 -- 11. lackluster (somewhat broken)
 -- 12. tokyodark
 -- 13. poimandres
+-- 14. rose
 
-local colorTheme = "tokyonight"
-local chosenTheme = themes[4]
+local colorTheme = "rose-pine"
+local chosenTheme = themes[14]
 
 return { chosenTheme, {
   "LazyVim/LazyVim",

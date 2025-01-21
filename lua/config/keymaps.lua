@@ -2,8 +2,42 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 --
+--
+-- kulala
+vim.keymap.set(
+  "n",
+  "<leader>ke",
+  "<cmd>lua require('kulala').run()<cr>",
+  { noremap = true, silent = true, desc = "Execute the request" }
+)
+
+vim.keymap.set(
+  "v",
+  "<leader>ke",
+  "<cmd>lua require('kulala').run()<cr>",
+  { noremap = true, silent = true, desc = "Execute the request" }
+)
+
+vim.keymap.set(
+  "n",
+  "[",
+  "<cmd>lua require('kulala').jump_prev()<cr>",
+  { noremap = true, silent = true, desc = "Jump to the previous request" }
+)
+vim.keymap.set(
+  "n",
+  "]",
+  "<cmd>lua require('kulala').jump_next()<cr>",
+  { noremap = true, silent = true, desc = "Jump to the next request" }
+)
 local keybindings = {
   -- general
+  {
+    mode = "n",
+    key = "<leader>fs",
+    command = "<cmd>Telescope lsp_document_symbols<cr>",
+    description = "List functions in a file",
+  },
   { mode = "n", key = "<C-s>", command = ":w<CR>", description = "Save current buffer" },
   -- Move lines
   { mode = "n", key = "<A-j>", command = ":m .+1<CR>==", description = "Move line down" },
@@ -87,6 +121,149 @@ local keybindings = {
     command = ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>",
     description = "Open settings",
   },
+  -- LSP
+  -- basic
+  {
+    mode = "n",
+    key = "gd",
+    command = "<cmd>lua vim.lsp.buf.definition()<CR>",
+    description = "LSP go to definition",
+  },
+  {
+    mode = "n",
+    key = "gD",
+    command = "<cmd>lua vim.lsp.buf.declaration()<CR>",
+    description = "LSP go to declaration",
+  },
+  {
+    mode = "n",
+    key = "gr",
+    command = "<cmd>lua vim.lsp.buf.references()<CR>",
+    description = "LSP find references",
+  },
+  {
+    mode = "n",
+    key = "gi",
+    command = "<cmd>lua vim.lsp.buf.implementation()<CR>",
+    description = "LSP go to implementation",
+  },
+  { mode = "n", key = "K", command = "<cmd>lua vim.lsp.buf.hover()<CR>", description = "LSP hover" },
+  {
+    mode = "n",
+    key = "<leader>lf",
+    command = "<cmd>lua vim.lsp.buf.format()<CR>",
+    description = "LSP format",
+  },
+  -- LSP Menu
+  {
+    mode = "n",
+    key = "<leader>kj",
+    command = vim.diagnostic.goto_next,
+    description = "go to next error",
+  },
+  {
+    mode = "n",
+    key = "<leader>kk",
+    command = vim.diagnostic.goto_prev,
+    description = "go to previous error",
+  },
+  {
+    mode = "n",
+    key = "<leader>lr",
+    command = "<cmd>lua vim.lsp.buf.rename()<CR>",
+    description = "Rename",
+  },
+  {
+    mode = "n",
+    key = "<leader>R",
+    command = "<cmd>LspRestart<CR>",
+    description = "Restart LSP",
+  },
+  {
+    mode = "n",
+    key = "<leader>la",
+    command = "<cmd>lua vim.lsp.buf.code_action()<CR>",
+    description = "Code action",
+  },
+  {
+    mode = "n",
+    key = "<leader>ld",
+    command = "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+    description = "Buffer Diagnostics",
+  },
+  {
+    mode = "n",
+    key = "<leader>lD",
+    command = "<cmd>Telescope lsp_document_diagnostics bufnr=0 theme=get_ivy<cr>",
+    description = "Document Diagnostics",
+  },
+  {
+    mode = "n",
+    key = "<leader>ll",
+    command = "<cmd>lua vim.lsp.codelens.run()<cr>",
+    description = "CodeLens Action",
+  },
+  {
+    mode = "n",
+    key = "<leader>li",
+    command = "<cmd>LspInfo<cr>",
+    description = "Info",
+  },
+  {
+    mode = "n",
+    key = "<leader>lI",
+    command = "<cmd>Mason<cr>",
+    description = "Mason Info",
+  },
+  {
+    mode = "n",
+    key = "<leader>lq",
+    command = "<cmd>lua vim.diagnostic.setloclist()<cr>",
+    description = "Quickfix",
+  },
+  {
+    mode = "n",
+    key = "<leader>ls",
+    command = "<cmd>Telescope lsp_document_symbols<cr>",
+    description = "Document Symbols",
+  },
+  {
+    mode = "n",
+    key = "<leader>lS",
+    command = "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+    description = "Workspace Symbols",
+  },
+  {
+    mode = "n",
+    key = "<leader>le",
+    command = "<cmd>Telescope quickfix<cr>",
+    description = "Telescope Quickfix",
+  },
+  -- luasnip
+  {
+    mode = "i",
+    key = "<C-j>",
+    command = "<cmd>lua require('luasnip').jump(1)<CR>",
+    description = "Jump forward",
+  },
+  {
+    mode = "i",
+    key = "<C-k>",
+    command = "<cmd>lua require('luasnip').jump(-1)<CR>",
+    description = "Jump backward",
+  },
+  {
+    mode = "s",
+    key = "<C-j>",
+    command = "<cmd>lua require('luasnip').jump(1)<CR>",
+    description = "Jump forward",
+  },
+  {
+    mode = "s",
+    key = "<C-k>",
+    command = "<cmd>lua require('luasnip').jump(-1)<CR>",
+    description = "Jump backward",
+  },
   -- markdown preview
   {
     mode = "n",
@@ -146,19 +323,6 @@ local keybindings = {
     command = "<cmd>set wrap!<CR>",
     description = "Toggle wrap",
   },
-  -- -- peek
-  -- {
-  --   mode = "n",
-  --   key = "<leader>po",
-  --   command = "<cmd>PeekOpen<CR>",
-  --   description = "Open Peek Markdown Viewer",
-  -- },
-  -- {
-  --   mode = "n",
-  --   key = "<leader>pc",
-  --   command = "<cmd>PeekClose<CR>",
-  --   description = "Close Peek Markdown Viewer",
-  -- },
 }
 
 for _, bind in ipairs(keybindings) do
