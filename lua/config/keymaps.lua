@@ -35,7 +35,7 @@ local keybindings = {
   {
     mode = "n",
     key = "<leader>fs",
-    command = "<cmd>Telescope lsp_document_symbols<cr>",
+    command = "<cmd>Telescope lsp_document_symbols ignore_symbols=variable<cr>",
     description = "List functions in a file",
   },
   { mode = "n", key = "<C-s>", command = ":w<CR>", description = "Save current buffer" },
