@@ -44,8 +44,17 @@ local themes = {
   },
   {
     "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "night", transparent = true },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "moon",
+      transparent = false,
+
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
   },
   {
     "catppuccin/nvim",
@@ -239,12 +248,7 @@ local themes = {
 -- 13. poimandres
 -- 14. rose
 
-local colorTheme = "rose-pine"
-local chosenTheme = themes[14]
+local colorTheme = "tokyonight"
+local chosenTheme = themes[4]
 
-return { chosenTheme, {
-  "LazyVim/LazyVim",
-  opts = {
-    colorscheme = colorTheme,
-  },
-} }
+return chosenTheme
