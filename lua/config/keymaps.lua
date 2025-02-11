@@ -34,6 +34,12 @@ local keybindings = {
   -- general
   {
     mode = "n",
+    key = "<leader>fa",
+    command = "<cmd>Telescope resume<cr>",
+    description = "Resume previous telescope search",
+  },
+  {
+    mode = "n",
     key = "<leader>fs",
     command = "<cmd>Telescope lsp_document_symbols ignore_symbols=variable<cr>",
     description = "List functions in a file",
