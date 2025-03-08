@@ -1,4 +1,4 @@
-local themes = {
+return {
   {
     "rebelot/kanagawa.nvim",
     lazy = false,
@@ -17,7 +17,6 @@ local themes = {
           },
         },
       })
-      vim.cmd("colorscheme kanagawa-wave")
     end,
   },
   {
@@ -31,16 +30,12 @@ local themes = {
           contrast = false,
         },
       })
-      vim.cmd([[colorscheme decay-dark]])
     end,
   },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme gruvbox]])
-    end,
   },
   {
     "folke/tokyonight.nvim",
@@ -105,22 +100,12 @@ local themes = {
     priority = 1000,
   },
   {
-    "baliestri/aura-theme",
-    lazy = false,
-    priority = 1000,
-    config = function(plugin)
-      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
-      vim.cmd([[colorscheme aura-dark]])
-    end,
-  },
-  {
     "oxfist/night-owl.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
       require("night-owl").setup()
-      vim.cmd.colorscheme("night-owl")
     end,
   },
   {
@@ -135,7 +120,6 @@ local themes = {
         terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
         guicursor = true,
       })
-      vim.cmd("colorscheme bluloco")
     end,
   },
   {
@@ -154,7 +138,6 @@ local themes = {
     },
     config = function(opts)
       require("kanagawa-paper").setup(opts)
-      vim.cmd("colorscheme kanagawa-paper")
     end,
   },
   {
@@ -191,8 +174,34 @@ local themes = {
     },
     config = function(_, opts)
       require("tokyodark").setup(opts) -- calling setup is optional
-      vim.cmd([[colorscheme tokyodark]])
     end,
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+  },
+  {
+    "navarasu/onedark.nvim",
+  },
+  {
+    "sainnhe/everforest",
+  },
+  {
+    "marko-cerovac/material.nvim",
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+  },
+  {
+    "sainnhe/edge",
+  },
+  {
+    "mcchrish/zenbones.nvim",
+  },
+  {
+    "rafamadriz/neon",
   },
   {
     "olivercederborg/poimandres.nvim",
@@ -202,11 +211,6 @@ local themes = {
       require("poimandres").setup({
         disable_background = true,
       })
-    end,
-
-    -- optionally set the colorscheme within lazy config
-    init = function()
-      vim.cmd("colorscheme poimandres")
     end,
   },
   {
@@ -224,11 +228,6 @@ local themes = {
         },
       })
     end,
-
-    -- optionally set the colorscheme within lazy config
-    init = function()
-      vim.cmd("colorscheme rose-pine")
-    end,
   },
 }
 
@@ -239,7 +238,6 @@ local themes = {
 -- 4. tokyonight
 -- 5. catppuccin
 -- 6. nord
--- 7. aura-dark
 -- 8. night-owl
 -- 9. bluloco
 -- 10. kanagawa-paper
@@ -248,7 +246,7 @@ local themes = {
 -- 13. poimandres
 -- 14. rose
 
-local colorTheme = "tokyonight"
-local chosenTheme = themes[4]
-
-return chosenTheme
+-- local colorTheme = "tokyonight"
+-- local chosenTheme = themes[4]
+--
+-- return chosenTheme

@@ -2,3 +2,4 @@
 require("config.lazy")
 
 vim.cmd("Copilot disable") -- start with copilot disabled
+-- vim.cmd("set hlsearch")

@@ -23,3 +23,4 @@ vim.filetype.add({
 })
 
 vim.api.nvim_set_keymap("i", "<Tab>", "<Tab>", { noremap = true, silent = true })
+vim.opt.background = "dark"

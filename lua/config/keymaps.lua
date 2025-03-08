@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 --
 --
+vim.keymap.set("n", "<leader>T", "<cmd>Themery<cr>", { noremap = true, silent = true, desc = "Open themery" })
 -- kulala
 vim.keymap.set(
   "n",
