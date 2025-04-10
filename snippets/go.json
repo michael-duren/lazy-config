@@ -1,0 +1,7 @@
+{
+  "Error handling": {
+    "prefix": "ifr",
+    "body": ["if err != nil {", "\t${1:return err}", "}"],
+    "description": "Go error handling"
+  }
+}
