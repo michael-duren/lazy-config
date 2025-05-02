@@ -1,8 +1,12 @@
 return {
-  "nvimdev/dashboard-nvim",
-  lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
-  opts = function()
-    local logo = [[
+  "snacks.nvim",
+  opts = {
+    dashboard = {
+      preset = {
+        pick = function(cmd, opts)
+          return LazyVim.pick(cmd, opts)()
+        end,
+        header = [[
        ....                                                               
    .xH888888Hx.                                                           
  .H8888888888888:       x.    .        .u    .                 u.    u.   
@@ -15,21 +19,10 @@ return {
   X88888888hx. ..!    "8888Y 8888"   ^"8888*"    '8888c. .+  "*88*" 8888" 
  !   "*888888888"      `Y"   'YP        "Y"       "88888%      ""   'Y"   
         ^"***"`                                     "YP'                  
-    ]]
-
-    logo = string.rep("\n", 8) .. logo .. "\n\n"
-
-    local opts = {
-      theme = "doom",
-      hide = {
-        -- this is taken care of by lualine
-        -- enabling this messes up the actual laststatus setting after loading a file
-        statusline = false,
-      },
-      config = {
-        header = vim.split(logo, "\n"),
-        -- stylua: ignore
-        center = {
+   ]],
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
           { action = LazyVim.pick("files"),                                    desc = " Find File",       icon = " ", key = "f" },
           { action = "ene | startinsert",                                        desc = " New File",        icon = " ", key = "n" },
           { action = "Telescope oldfiles",                                       desc = " Recent Files",    icon = " ", key = "r" },
@@ -39,31 +32,17 @@ return {
           { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
           { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
-        },
-        footer = function()
-          local stats = require("lazy").stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
-        end,
+            -- { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            -- { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            -- { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            -- { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+            -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            -- { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            -- { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
       },
-    }
-
-    for _, button in ipairs(opts.config.center) do
-      button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-      button.key_format = "  %s"
-    end
-
-    -- close Lazy and re-open when the dashboard is ready
-    if vim.o.filetype == "lazy" then
-      vim.cmd.close()
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "DashboardLoaded",
-        callback = function()
-          require("lazy").show()
-        end,
-      })
-    end
-
-    return opts
-  end,
+    },
+  },
 }

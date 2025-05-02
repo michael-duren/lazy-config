@@ -22,6 +22,7 @@ return {
         "elflord",
         "evening",
         "everforest",
+        "gruvbox",
         "habamax",
         "industry",
         "kanagawa",
