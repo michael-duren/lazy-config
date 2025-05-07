@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 --
---
+
 vim.keymap.set("n", "<leader>T", "<cmd>Themery<cr>", { noremap = true, silent = true, desc = "Open themery" })
 -- kulala
 vim.keymap.set(
@@ -333,5 +333,10 @@ local keybindings = {
 }
 
 for _, bind in ipairs(keybindings) do
-  vim.keymap.set(bind.mode, bind.key, bind.command, bind.options or { desc = bind.description })
+  vim.keymap.set(
+    bind.mode,
+    bind.key,
+    bind.command,
+    bind.options or { desc = bind.description, noremap = true, silent = true }
+  )
 end
