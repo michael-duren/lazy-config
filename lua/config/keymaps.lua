@@ -340,3 +340,7 @@ for _, bind in ipairs(keybindings) do
     bind.options or { desc = bind.description, noremap = true, silent = true }
   )
 end
+
+vim.keymap.set("n", "<C-n>", function()
+  require("oil").toggle_float()
+end, { desc = "Toggle Oil file viewer" })
