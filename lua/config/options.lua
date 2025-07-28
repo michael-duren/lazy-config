@@ -3,6 +3,8 @@
 -- Add any additional options here
 
 local opt = vim.opt
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
 
 -- set default tab size to 4
 -- opt.tabstop = 4
