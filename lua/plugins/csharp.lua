@@ -1,0 +1,35 @@
+return {}
+-- return {
+--   {
+--     "williamboman/mason.nvim",
+--     opts = {
+--       ensure_installed = {
+--         "csharp-language-server", -- This ensures it stays installed
+--       },
+--     },
+--   },
+--   -- csharp-ls extended features
+--   {
+--     "Decodetalkers/csharpls-extended-lsp.nvim",
+--     dependencies = { "nvim-telescope/telescope.nvim" },
+--   },
+--
+--   -- LSP configuration
+--   {
+--     "Decodetalkers/csharpls-extended-lsp.nvim",
+--     ft = "cs",
+--     dependencies = { "nvim-telescope/telescope.nvim" },
+--     config = function()
+--       -- Setup csharp-ls
+--       require("lspconfig").csharp_ls.setup({
+--         root_dir = require("lspconfig.util").root_pattern("*.sln", "*.csproj", ".git"),
+--       })
+--
+--       -- Enable extended features
+--       require("csharpls_extended").buf_read_cmd_bind()
+--
+--       -- Load telescope extension
+--       require("telescope").load_extension("csharpls_definition")
+--     end,
+--   },
+-- }
