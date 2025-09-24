@@ -1,6 +1,10 @@
 return {
   "snacks.nvim",
   opts = {
+    picker = {
+      hidden = true, -- Set to true to display hidden files (e.g., .git)
+      ignored = true, -- Set to true to display files ignored by .gitignore
+    },
     dashboard = {
       preset = {
         pick = function(cmd, opts)
